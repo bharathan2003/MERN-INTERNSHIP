@@ -1,0 +1,97 @@
+create database db;
+create table student(id int ,name varchar, age int, gender varchar(5),course varchar(20));
+insert into student values(1 , ' bharathan ', 20 ,' m ',' cse  ');
+insert into student values(2 , ' arjun     ', 20 ,' m ',' cse  ');
+insert into student values(3 , ' dinesh    ', 19 ,' m ',' mech ');
+insert into student values(4 , ' dhiyanesh ', 17 ,' m ',' eee  ');
+insert into student values(5 , ' deepak    ', 20 ,' m ',' aids ');
+insert into student values(6 , ' ajay      ', 19 ,' m ',' ece  ');
+output:
+1| bharathan |20| m | cse  |90|
+2| arjun     |20| m | cse  |99|
+3| dinesh    |19| m | mech |88|
+4| dhiyanesh |17| m | eee  |94|
+5| deepak    |20| m | aids |95|
+6| ajay      |19| m | ece  |80|
+
+
+-- update
+alter table student
+add stu_id  int;
+update student set stu_id=21028 where id=1;
+update student set stu_id=21043 where id=4;
+output:
+1| bharathan |20| m | cse  |90|21028
+2| arjun     |20| m | cse  |99|
+3| dinesh    |19| m | mech |88|
+4| dhiyanesh |17| m | eee  |94|21043
+5| deepak    |20| m | aids |95|
+6| ajay      |19| m | ece  |80|
+
+select * from student;
+ 
+-- rename
+alter table student
+rename stu_id to student_id;
+
+-- drop
+   drop table student;
+
+-- asc or dsc
+select * from student order by name desc;
+output:
+3| dinesh    |19| m | mech |88|
+4| dhiyanesh |17| m | eee  |94|21043
+5| deepak    |20| m | aids |95|
+1| bharathan |20| m | cse  |90|21028
+2| arjun     |20| m | cse  |99|
+6| ajay      |19| m | ece  |80|
+
+
+-- count
+select count(age) from student where age>19;
+output:
+ 3
+
+-- avg
+select avg(mark) from student;
+output:
+ 91.0
+
+-- sum
+select sum(mark) from student where mark>92;
+output:
+288
+
+-- JOINTS
+create database db;
+create table student(id int ,name varchar, age int, gender varchar(5),course varchar(20),mark int);
+insert into student values(1 , ' bharathan ', 20 ,' m ',' cse  ', 90);
+insert into student values(2 , ' arjun     ', 20 ,' m ',' cse  ', 99);
+insert into student values(3 , ' dinesh    ', 19 ,' m ',' mech ', 88);
+insert into student values(4 , ' dhiyanesh ', 17 ,' m ',' eee  ', 94);
+insert into student values(5 , ' deepak    ', 20 ,' m ',' aids ', 95);
+insert into student values(6 , ' ajay      ', 19 ,' m ',' ece  ', 80);
+
+select * from student;
+
+create table learn(id int ,name varchar, age int, gender varchar(5),course varchar(20),mark int);
+insert into learn values(7  , ' bharathan ', 20 ,' m ',' cse  ', 90);
+insert into learn values(8  , ' arjun     ', 20 ,' m ',' cse  ', 99);
+insert into learn values(9  , ' babu      ', 19 ,' m ',' mec  ', 88);
+insert into learn values(10 , ' akilan    ', 17 ,' m ',' elite', 94);
+insert into learn values(11 , ' fayaz     ', 20 ,' m ',' top  ', 95);
+insert into learn values(12 , ' bharath   ', 19 ,' m ',' ecc  ', 80);
+
+select * from learn;
+
+-- left join
+select * from student left join learn on student.name=learn.name;
+OUTPUT:
+1| bharathan |20| m | cse  |90|7| bharathan |20| m | cse  |90
+2| arjun     |20| m | cse  |99|8| arjun     |20| m | cse  |99
+3| dinesh    |19| m | mech |88||||||
+4| dhiyanesh |17| m | eee  |94||||||
+5| deepak    |20| m | aids |95||||||
+6| ajay      |19| m | ece  |80||||||
+
